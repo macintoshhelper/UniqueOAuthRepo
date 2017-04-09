@@ -1,6 +1,7 @@
 const hapi = require('hapi');
 const inert = require('inert');
 const fs = require('fs');
+const routes = require('./routes/index.js');
 
 const server = new hapi.Server();
 
@@ -17,15 +18,7 @@ server.connection({
 server.register([inert], (err) => {
   if (err) throw err;
 
-  server.route({
-    method: 'GET',
-    path: '/',
-    handler: {
-      file: {
-        path: 'public/index.html'
-      }
-    }
-  })
+  server.route(routes)
 
   server.start((err) => {
     if (err) throw err;
