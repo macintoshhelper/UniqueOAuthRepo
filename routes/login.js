@@ -1,4 +1,5 @@
 const qs = require('querystring');
+const env = require('env2')('./config.env');
 
 module.exports= {
   method: 'GET',
@@ -7,6 +8,6 @@ module.exports= {
     var params = {
       client_id: process.env.CLIENT_ID,
     }
-     reply.redirect('https://github.com/login/oauth/authorize?client_id='+ qs.parse(params))
+    reply.redirect('https://github.com/login/oauth/authorize?'+ qs.stringify(params))
   }
 }
