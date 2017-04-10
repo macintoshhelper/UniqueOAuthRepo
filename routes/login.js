@@ -1,5 +1,5 @@
 const qs = require('querystring');
-const env = require('env2')('./config.env');
+require('env2')('./config.env');
 
 module.exports = {
   method: 'GET',

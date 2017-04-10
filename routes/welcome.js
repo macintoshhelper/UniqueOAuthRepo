@@ -1,5 +1,5 @@
 const request = require('request');
-const env = require('env2')('./config.env');
+require('env2')('./config.env');
 const url = require('url');
 const qs = require('querystring');
 const jwt = require('jsonwebtoken');
@@ -44,7 +44,7 @@ module.exports = {
             rep(500).error(500);
             return;
           }
-          //  console.log(bodyGet);
+          console.log(JSON.parse(bodyGet));
 
           const optionsGet = {
             expiresIn: Date.now() + (24 * 60 * 60 * 1000),
@@ -53,9 +53,9 @@ module.exports = {
 
           const payload = {
             user: {
-              username: bodyGet.login,
-              img_url: bodyGet.avatar_url,
-              user_id: bodyGet.id,
+              username: JSON.parse(bodyGet).login,
+              img_url: JSON.parse(bodyGet).avatar_url,
+              user_id: JSON.parse(bodyGet).id,
             },
             accessToken: responseBody.access_token,
           };

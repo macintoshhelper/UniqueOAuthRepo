@@ -12,12 +12,12 @@ const options = {
   cert: fs.readFileSync('./keys/cert.pem'),
 };
 
-// const people = { // our "users database", use your github details here
-//   1: {
-//     id: 1,
-//     name: 'Jen Jones',
-//   },
-// };
+const people = { // our "users database", use your github details here
+  6757532: {
+    id: 6757532,
+    name: 'macintoshhelper',
+  },
+};
 
 server.connection({
   port: process.env.PORT || 3000,
@@ -26,8 +26,8 @@ server.connection({
 
 
 function validate(token, request, callback) {
-  console.log(token); // decoded token, it automaitcally decodes it
-  if (token.sub === 'github-data') {
+  console.log(token.user); // decoded token, it automaitcally decodes it
+  if (!people[token.user.user_id]) {
     return callback(null, false);
   }
   return callback(null, true);
