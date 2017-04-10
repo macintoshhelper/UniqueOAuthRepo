@@ -21,4 +21,4 @@ echo "BASE_URL=https://localhost:3000\n
 CLIENT_ID=$client_id\n
 CLIENT_SECRET=$client_secret\n
 SECRET=$secret\n
-" >> config2.env
+" > config.env
